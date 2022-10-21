@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        bool flag=false;
+        vector<int> origin_num;
+        origin_num=bubble_soft(nums);
+        for(int i=0;i<nums.size();i++){
+
+            if(nums==origin_num){
+                flag=true;
+            }
+            origin_num=shift_num(origin_num);
+        }
+        return flag;
+    }
+    vector<int>shift_num(vector<int> v) {
+        int temp = v[0];
+        for (int i = 0; i < v.size() - 1; ++i) {
+            v[i] = v[i + 1];
+        }
+        v[v.size() - 1] = temp;
+        return v;
+    }
+    vector<int>bubble_soft(vector<int> v)
+    {
+        for(int i=0;i<v.size()-1;++i)
+        {
+            for(int j=0;j<v.size()-1-i;++j)
+            if(v[j]>v[j+1])
+            {
+                int temp=v[j];
+                v[j]= v[j+1];
+                v[j+1]=temp;
+            }
+        }
+        return v;
+    }
+
+};
